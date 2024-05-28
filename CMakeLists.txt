@@ -7,11 +7,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-option(BUILD_TESTS "Build tests" OFF)
+option(BUILD_TESTS "Build tests" ON)
 
+find_package(fmt CONFIG REQUIRED)
 file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.c")
 add_library(chempars ${SOURCES})
 target_include_directories(chempars PUBLIC include)
+target_link_libraries(chempars PUBLIC fmt::fmt)
 
 if(BUILD_TESTS)
     add_subdirectory(test)
