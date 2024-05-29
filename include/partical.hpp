@@ -11,6 +11,11 @@ struct partical {
   std::string   name;
   particle_type type;
   uint8_t       charge;
+
+  partical(std::string name, particle_type type, uint8_t charge)
+      : name(name), type(type), charge(charge) {}
+
+  partical(std::string name);
 };
 
 }  // namespace gds::chempars
