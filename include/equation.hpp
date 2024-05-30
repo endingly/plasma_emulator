@@ -19,6 +19,9 @@ struct equation {
   double                threshold;
   std::vector<partical> reactants;
   std::vector<partical> products;
+
+  equation() = default;
+  equation(std::string equation_str);
 };
 
 }  // namespace gds::chempars
