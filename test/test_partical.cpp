@@ -10,3 +10,10 @@ TEST(ParticalTest, format_out) {
   p.type   = particle_type::atom;
   fmt::print("{}\n", p);
 }
+
+TEST(ParticalTest, constrcut) {
+  using namespace gds::chempars;
+  partical p2("O");
+  fmt::print("{}\n", p2);
+  EXPECT_EQ(p2.type, particle_type::atom);
+}

@@ -16,6 +16,7 @@ struct partical {
       : name(name), type(type), charge(charge) {}
 
   partical(std::string name);
+  partical() = default;
 };
 
 }  // namespace gds::chempars
