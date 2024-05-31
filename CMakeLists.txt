@@ -10,11 +10,11 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 option(BUILD_TESTS "Build tests" ON)
 
 find_package(fmt CONFIG REQUIRED)
+find_package(units CONFIG REQUIRED)
 file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.c")
 add_library(chempars ${SOURCES})
 target_include_directories(chempars PUBLIC include)
-target_link_libraries(chempars PUBLIC fmt::fmt)
-
+target_link_libraries(chempars PUBLIC fmt::fmt units::units)
 if(BUILD_TESTS)
     add_subdirectory(test)
 endif()
