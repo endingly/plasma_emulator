@@ -16,12 +16,17 @@ enum class equation_type {
 struct equation {
   equation_type         type;
   int                   eq_id;
-  double                threshold;
+  double                reaction_velocity;
   std::vector<partical> reactants;
   std::vector<partical> products;
 
   equation() = default;
-  equation(std::string equation_str);
+  equation(const std::string &equation_str);
+
+ private:
+  static int               id_counter;
+  std::vector<std::string> parse_equation_str(const std::string &equation_str);
+  equation_type            parse_equation_type(const std::string &type_str);
 };
 
 }  // namespace gds::chempars
@@ -82,8 +87,8 @@ struct formatter<gds::chempars::equation> {
   template <typename FormatContext>
   auto format(gds::chempars::equation const &eq, FormatContext &ctx) {
     return format_to(
-        ctx.out(), "equation(type={}, id={}, {} -> {}, threshold={})", eq.type,
-        eq.eq_id, eq.reactants, eq.products, eq.threshold);
+        ctx.out(), "equation(type={}, id={}, {} -> {}, reaction_velocity={})",
+        eq.type, eq.eq_id, eq.reactants, eq.products, eq.reaction_velocity);
   }
 };
 }  // namespace fmt

@@ -6,9 +6,9 @@ TEST(EquationTest, TestEquation) {
   using namespace gds::chempars;
   using vec_part = std::vector<partical>;
   equation e;
-  e.eq_id     = 1;
-  e.threshold = 3e-10;
-  e.type      = equation_type::ionization;
+  e.eq_id             = 1;
+  e.reaction_velocity = 3e-10;
+  e.type              = equation_type::ionization;
 
   partical p1, p2, p3;
   p1.name   = "H2O";
@@ -29,5 +29,12 @@ TEST(EquationTest, TestEquation) {
   e.reactants = reacs;
   e.products  = prods;
 
+  fmt::print("{}\n", e);
+}
+
+TEST(EquationTest, TestParse) {
+  using namespace gds::chempars;
+  std::string str = "e + Ar^+ -> Ar^*, excite";
+  equation e(str);
   fmt::print("{}\n", e);
 }
