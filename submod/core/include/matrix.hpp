@@ -3,6 +3,7 @@
 #include <Eigen/Sparse>
 
 #include "config.hpp"
+
 namespace gds {
 
 using config::x_cells, config::y_cells;

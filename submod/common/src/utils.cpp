@@ -5,9 +5,7 @@
 namespace gds::common {
 
 int find_sign(std::string_view str, std::string_view substr) {
-  auto pos =
-      std::search(str.begin(), str.end(),
-                  std::boyer_moore_searcher(substr.begin(), substr.end()));
+  auto pos = std::search(str.begin(), str.end(), std::boyer_moore_searcher(substr.begin(), substr.end()));
   if (pos == str.end()) {
     const std::string msg = "Error: cannot find `->` in the string";
     Logger::Error(msg);
@@ -16,10 +14,8 @@ int find_sign(std::string_view str, std::string_view substr) {
   return std::distance(str.begin(), pos);
 }
 
-int find_sign(const std::string::iterator& begin,
-              const std::string::iterator& end, const std::string& substr) {
-  auto pos = std::search(
-      begin, end, std::boyer_moore_searcher(substr.begin(), substr.end()));
+int find_sign(const std::string::iterator& begin, const std::string::iterator& end, const std::string& substr) {
+  auto pos = std::search(begin, end, std::boyer_moore_searcher(substr.begin(), substr.end()));
   if (pos == end) {
     std::string msg = "Error: cannot find `->` in the string";
     Logger::Error(msg);
@@ -28,8 +24,7 @@ int find_sign(const std::string::iterator& begin,
   return std::distance(begin, pos);
 }
 
-std::optional<std::vector<std::string>> split(const std::string_view& str,
-                                              const std::string_view& delim) {
+std::optional<std::vector<std::string>> split(const std::string_view& str, const std::string_view& delim) {
   if (str.empty()) {
     return std::nullopt;
   }
@@ -80,8 +75,7 @@ std::optional<std::string_view> remove_space(std::string_view str) {
   while (pos_begin != pos_last && std::isspace(*(pos_last - 1))) {
     --pos_last;
   }
-  return result.substr(std::distance(result.begin(), pos_begin),
-                       std::distance(pos_begin, pos_last));
+  return result.substr(std::distance(result.begin(), pos_begin), std::distance(pos_begin, pos_last));
 }
 
 };  // namespace gds::common
