@@ -1,11 +1,17 @@
-# Chempars
+# Plasma Emulator
 
-Chempars is a C++ library for parsing chemical equations and performing chemical calculations (only plasma, electrolysis).
+The project is aimed to develop a C++ emulator for plasma physics calculations. And now, it is still in the early stage of development.
+
+## 1. submodules
+
+### 1.1 chempars
+
+a C++ library for parsing chemical equations and performing chemical calculations (only plasma, electrolysis).
 
 In academia, we usually need to analyze particle reaction equations like this
 
 $$
-\mathrm{e} + \mathrm{Ar^+} -> \mathrm{Ar^*},\ 4.0\times10^{-13}\mathrm{T_e}^{-0.5}\ \mathrm{cm^{-3}s^{-1}}
+\mathrm{e} + \mathrm{Ar^+} \rightarrow \mathrm{Ar^*},\ 4.0\times10^{-13}\mathrm{T_e}^{-0.5}\ \mathrm{cm^{-3}s^{-1}}
 $$
 
 The number after the formula refers to the threshold of the reaction.
@@ -17,3 +23,15 @@ e + Ar^+ -> Ar^*, 4.0e-13 cm^3/s
 ```
 
 the text is part of file like `toml`, `yaml` or `json` usually.
+
+### 1.2 common
+  
+a C++ library for common data structures and algorithms.
+
+now it contains:
+
+- log
+- units calculate and convert system
+- config file parser
+- config argument data structure
+- some utils functions
