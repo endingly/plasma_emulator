@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "name": "chempars",
+  "name": "plasma-emulator",
   "version": "0.0.1",
   "description": "A C++ library for parsing chemical equations and formulas",
   "builtin-baseline": "f4456c1b974131b8467c7371a3c302b7f58a99f2",
@@ -9,6 +9,7 @@
   "dependencies": [
     "gtest",
     "fmt",
-    "units"
+    "units",
+    "eigen3"
   ]
 }
