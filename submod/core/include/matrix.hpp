@@ -4,7 +4,7 @@
 
 #include "config.hpp"
 
-namespace gds {
+namespace gds::core {
 
 using config::x_cells, config::y_cells;
 
