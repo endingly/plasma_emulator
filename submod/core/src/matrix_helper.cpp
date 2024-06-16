@@ -4,7 +4,7 @@
 
 namespace gds::core {
 
-gds::core::ESM matrix_helper::init_tridiagonal_matrix(int n, std::array<double, 3> elements) {
+gds::core::ESM MatrixHelper::init_tridiagonal_matrix(int n, std::array<double, 3> elements) {
   // the tridiagonal matrix is a square matrix with n rows and n columns
   std::vector<Eigen::Triplet<double>> entities;
   for (int i = 0; i < n; i++) {

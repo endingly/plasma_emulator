@@ -2,7 +2,7 @@
 #include "matrix.hpp"
 
 namespace gds::core {
-class matrix_helper {
+class MatrixHelper {
  public:
   /// @brief initializes a tridiagonal matrix with the given diagonal, subdiagonal, and superdiagonal elements
   /// @param n size of the matrix

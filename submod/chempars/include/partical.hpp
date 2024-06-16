@@ -5,18 +5,18 @@
 
 namespace gds::chempars {
 
-enum class particle_type { electron, atom, ion, excite };
+enum class ParticleType { electron, atom, ion, excite };
 
-struct partical {
+struct Partical {
   std::string   name;
-  particle_type type;
+  ParticleType type;
   uint8_t       charge;
 
-  partical(std::string name, particle_type type, uint8_t charge)
+  Partical(std::string name, ParticleType type, uint8_t charge)
       : name(name), type(type), charge(charge) {}
 
-  partical(std::string name);
-  partical() = default;
+  Partical(std::string name);
+  Partical() = default;
 };
 
 }  // namespace gds::chempars
@@ -24,22 +24,22 @@ struct partical {
 namespace fmt {
 
 template <>
-struct formatter<gds::chempars::particle_type> {
+struct formatter<gds::chempars::ParticleType> {
   template <typename ParseContext>
   constexpr auto parse(ParseContext &ctx) {
     return ctx.begin();
   }
 
   template <typename FormatContext>
-  auto format(gds::chempars::particle_type const &type, FormatContext &ctx) {
+  auto format(gds::chempars::ParticleType const &type, FormatContext &ctx) {
     switch (type) {
-      case gds::chempars::particle_type::electron:
+      case gds::chempars::ParticleType::electron:
         return format_to(ctx.out(), "electron");
-      case gds::chempars::particle_type::atom:
+      case gds::chempars::ParticleType::atom:
         return format_to(ctx.out(), "atom");
-      case gds::chempars::particle_type::ion:
+      case gds::chempars::ParticleType::ion:
         return format_to(ctx.out(), "ion");
-      case gds::chempars::particle_type::excite:
+      case gds::chempars::ParticleType::excite:
         return format_to(ctx.out(), "excite");
     }
     return format_to(ctx.out(), "unknown");
@@ -47,14 +47,14 @@ struct formatter<gds::chempars::particle_type> {
 };
 
 template <>
-struct formatter<gds::chempars::partical> {
+struct formatter<gds::chempars::Partical> {
   template <typename ParseContext>
   constexpr auto parse(ParseContext &ctx) {
     return ctx.begin();
   }
 
   template <typename FormatContext>
-  auto format(gds::chempars::partical const &part, FormatContext &ctx) {
+  auto format(gds::chempars::Partical const &part, FormatContext &ctx) {
     return format_to(ctx.out(), "name: {}, type: {}, charge: {}", part.name,
                      part.type, part.charge);
   }

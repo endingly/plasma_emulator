@@ -12,7 +12,7 @@ namespace gds::common {
 /// @param file_name 文件名
 /// @return 是否成功
 template <gds::core::EigenMatrix T>
-bool Write_Matrix_To_CSV(const T& matrix, const std::string& file_name) {
+bool write_Matrix_To_CSV(const T& matrix, const std::string& file_name) {
   std::ofstream file;
   file.open(file_name, std::ios::out | std::ios::binary);
   if (!file.is_open()) {

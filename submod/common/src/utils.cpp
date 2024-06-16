@@ -8,7 +8,7 @@ int find_sign(std::string_view str, std::string_view substr) {
   auto pos = std::search(str.begin(), str.end(), std::boyer_moore_searcher(substr.begin(), substr.end()));
   if (pos == str.end()) {
     const std::string msg = "Error: cannot find `->` in the string";
-    Logger::Error(msg);
+    Logger::error(msg);
     throw std::logic_error(msg);
   }
   return std::distance(str.begin(), pos);
@@ -18,7 +18,7 @@ int find_sign(const std::string::iterator& begin, const std::string::iterator& e
   auto pos = std::search(begin, end, std::boyer_moore_searcher(substr.begin(), substr.end()));
   if (pos == end) {
     std::string msg = "Error: cannot find `->` in the string";
-    Logger::Error(msg);
+    Logger::error(msg);
     throw std::logic_error(msg);
   }
   return std::distance(begin, pos);

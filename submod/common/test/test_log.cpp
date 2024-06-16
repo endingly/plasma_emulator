@@ -4,14 +4,14 @@
 using namespace gds::common;
 
 TEST(Log, print) {
-  Logger::Info("Hello, World!");
-  Logger::Info("Hello, World!");
-  Logger::Info("Hello, World!");
+  Logger::info("Hello, World!");
+  Logger::info("Hello, World!");
+  Logger::info("Hello, World!");
 }
 
 TEST(Log, print2file) {
   Logger::is_log_to_file_ = true;
-  Logger::Info("Hello, World!");
-  Logger::Info("Hello, World!");
-  Logger::Info("Hello, World!");
+  Logger::info("Hello, World!");
+  Logger::info("Hello, World!");
+  Logger::info("Hello, World!");
 }

@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-int gds::chempars::equation::id_counter = 0;
+int gds::chempars::Equation::id_counter = 0;
 
-gds::chempars::equation::equation(const std::string& str) {
+gds::chempars::Equation::Equation(const std::string& str) {
   // parse the equation string
   // like: e + Ar^+ -> Ar^*
   // split the string by ","
@@ -38,7 +38,7 @@ gds::chempars::equation::equation(const std::string& str) {
   this->eq_id = id_counter++;
 }
 
-std::vector<std::string> gds::chempars::equation::parse_equation_str(
+std::vector<std::string> gds::chempars::Equation::parse_equation_str(
     const std::string& equation_str) {
   auto result_vec = std::vector<std::string>();
   int  index      = 0;
@@ -62,18 +62,18 @@ std::vector<std::string> gds::chempars::equation::parse_equation_str(
   return result_vec;
 }
 
-gds::chempars::equation_type gds::chempars::equation::parse_equation_type(
+gds::chempars::EquationType gds::chempars::Equation::parse_equation_type(
     const std::string& type_str) {
   if (type_str.find("ionization") != std::string::npos)
-    return equation_type::ionization;
+    return EquationType::ionization;
   else if (type_str.find("elastic") != std::string::npos)
-    return equation_type::elastic;
+    return EquationType::elastic;
   else if (type_str.find("excite") != std::string::npos)
-    return equation_type::excite;
+    return EquationType::excite;
   else if (type_str.find("compound") != std::string::npos)
-    return equation_type::compound;
+    return EquationType::compound;
   else if (type_str.find("fadding_excitation") != std::string::npos)
-    return equation_type::fadding_excitation;
+    return EquationType::fadding_excitation;
   else {
     std::cerr << "Parsing error, invalid equation type: " << type_str
               << std::endl;
