@@ -1,5 +1,8 @@
 #include "utils.hpp"
 
+#include <functional>
+#include <stdexcept>
+
 #include "log.hpp"
 
 namespace gds::common {
