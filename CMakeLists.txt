@@ -8,5 +8,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 option(BUILD_TESTS "Build tests" ON)
+option(INTEL_MKL_BACKEND "Use Intel MKL backend" ON)
 
 add_subdirectory(submod)

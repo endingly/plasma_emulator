@@ -1,4 +1,8 @@
 #pragma once
+#ifdef INTEL_MKL_BACKEND
+#define EIGEN_USE_MKL_ALL
+#endif
+
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
 
