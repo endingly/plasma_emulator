@@ -5,7 +5,7 @@
 
 namespace gds::chempars {
 
-enum class equation_type {
+enum class EquationType {
   ionization,
   elastic,
   excite,
@@ -13,44 +13,44 @@ enum class equation_type {
   fadding_excitation,
 };
 
-struct equation {
-  equation_type         type;
+struct Equation {
+  EquationType         type;
   int                   eq_id;
   double                reaction_velocity;
-  std::vector<partical> reactants;
-  std::vector<partical> products;
+  std::vector<Partical> reactants;
+  std::vector<Partical> products;
 
-  equation() = default;
-  equation(const std::string &equation_str);
+  Equation() = default;
+  Equation(const std::string &equation_str);
 
  private:
   static int               id_counter;
   std::vector<std::string> parse_equation_str(const std::string &equation_str);
-  equation_type            parse_equation_type(const std::string &type_str);
+  EquationType            parse_equation_type(const std::string &type_str);
 };
 
 }  // namespace gds::chempars
 
 namespace fmt {
 template <>
-struct formatter<gds::chempars::equation_type> {
+struct formatter<gds::chempars::EquationType> {
   template <typename ParseContext>
   constexpr auto parse(ParseContext &ctx) {
     return ctx.begin();
   }
 
   template <typename FormatContext>
-  auto format(gds::chempars::equation_type const &type, FormatContext &ctx) {
+  auto format(gds::chempars::EquationType const &type, FormatContext &ctx) {
     switch (type) {
-      case gds::chempars::equation_type::ionization:
+      case gds::chempars::EquationType::ionization:
         return format_to(ctx.out(), "ionization");
-      case gds::chempars::equation_type::elastic:
+      case gds::chempars::EquationType::elastic:
         return format_to(ctx.out(), "elastic");
-      case gds::chempars::equation_type::excite:
+      case gds::chempars::EquationType::excite:
         return format_to(ctx.out(), "excite");
-      case gds::chempars::equation_type::compound:
+      case gds::chempars::EquationType::compound:
         return format_to(ctx.out(), "compound");
-      case gds::chempars::equation_type::fadding_excitation:
+      case gds::chempars::EquationType::fadding_excitation:
         return format_to(ctx.out(), "fadding_excitation");
       default:
         return format_to(ctx.out(), "unknown");
@@ -59,14 +59,14 @@ struct formatter<gds::chempars::equation_type> {
 };
 
 template <>
-struct formatter<std::vector<gds::chempars::partical>> {
+struct formatter<std::vector<gds::chempars::Partical>> {
   template <typename ParseContext>
   constexpr auto parse(ParseContext &ctx) {
     return ctx.begin();
   }
 
   template <typename FormatContext>
-  auto format(std::vector<gds::chempars::partical> const &type,
+  auto format(std::vector<gds::chempars::Partical> const &type,
               FormatContext                              &ctx) {
     std::string str = "";
     for (int i = 0; i < type.size() - 1; i++) {
@@ -78,14 +78,14 @@ struct formatter<std::vector<gds::chempars::partical>> {
 };
 
 template <>
-struct formatter<gds::chempars::equation> {
+struct formatter<gds::chempars::Equation> {
   template <typename ParseContext>
   constexpr auto parse(ParseContext &ctx) {
     return ctx.begin();
   }
 
   template <typename FormatContext>
-  auto format(gds::chempars::equation const &eq, FormatContext &ctx) {
+  auto format(gds::chempars::Equation const &eq, FormatContext &ctx) {
     return format_to(
         ctx.out(), "equation(type={}, id={}, {} -> {}, reaction_velocity={})",
         eq.type, eq.eq_id, eq.reactants, eq.products, eq.reaction_velocity);

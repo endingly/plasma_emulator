@@ -2,6 +2,12 @@
 
 The project is aimed to develop a C++ emulator for plasma physics calculations. And now, it is still in the early stage of development.
 
+## 0. build pre-requisites
+
+- C++20 compiler
+- vcpkg
+- Addtionally, if you want to use Intel MKL, you need to install it and set the environment variable `MKLROOT` to the installation directory. And set `USE_MKL_BACKEND=ON` in cmake file (default is `OFF`).
+
 ## 1. submodules
 
 ### 1.1 chempars

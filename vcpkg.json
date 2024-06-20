@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "A C++ library for parsing chemical equations and formulas",
   "builtin-baseline": "f4456c1b974131b8467c7371a3c302b7f58a99f2",
-  "homepage": "https://github.com/endingly/chempars",
+  "homepage": "https://github.com/endingly/plasma_emulator",
   "license": "MIT",
   "dependencies": [
     "gtest",
