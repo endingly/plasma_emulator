@@ -1,6 +1,8 @@
 #pragma once
-#include "matrix.hpp"
 #include <fstream>
+
+#include "matrix.hpp"
+#include "type_limits.hpp"
 
 namespace gds::core {
 class MatrixHelper {
@@ -34,7 +36,7 @@ class MatrixHelper {
   /// @return the initialized fivediagonal sparse matrix
   template <size_t n>
   static gds::core::ESM init_fivediagonal_matrices(std::array<double, 5u> elements)
-    requires(std::sqrt(n) == std::floor(std::sqrt(n)))
+    requires(gds::common::SquareRootNumber<n>)
   {
     // the fivediagonal matrices are square matrices with n rows and n columns
     // and `n` is a perfect square

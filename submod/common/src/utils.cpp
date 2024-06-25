@@ -2,7 +2,7 @@
 
 #include <functional>
 #include <stdexcept>
-
+#include <algorithm>
 #include "log.hpp"
 
 namespace gds::common {
