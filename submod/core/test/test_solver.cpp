@@ -2,7 +2,6 @@
 
 #include "matrix_helper.hpp"
 #include "timer.hpp"
-#include <Eigen/PardisoSupport>
 
 TEST(SolverTest, TestSolver) {
   // build problem  Ax = b
@@ -44,6 +43,8 @@ TEST(SolverTest, TestSolver_fivediagonal) {
   std::cout << "x(0:9) = " << x.topRows(10).transpose() << std::endl;
 }
 
+#ifdef INTEL_MKL_BACKEND
+#include <Eigen/PardisoSupport>
 TEST(SolverTest, TestSolver_fivediagonal_with_mkl) {
   // build problem  Ax = b
   // A
@@ -65,3 +66,4 @@ TEST(SolverTest, TestSolver_fivediagonal_with_mkl) {
   std::cout << "x length = " << x.size() << std::endl;
   std::cout << "x(0:9) = " << x.topRows(10).transpose() << std::endl;
 }
+#endif
