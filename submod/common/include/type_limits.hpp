@@ -30,6 +30,7 @@ class TypeLimitHelper {
   }
 };
 
+/// @brief a concept that checks if a number is a perfect square or not
 template <size_t N>
 concept SquareRootNumber = gds::common::TypeLimitHelper::isPerfectSquare(N);
 
