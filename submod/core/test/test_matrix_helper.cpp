@@ -4,7 +4,7 @@
 
 TEST(MatrixHelperTest, Test_init_tridiagonal_matrix) {
   std::array<double, 3> diag   = {1, 2, 3};
-  auto                  matrix = gds::core::MatrixHelper::init_tridiagonal_matrix(10, diag);
+  auto                  matrix = gds::core::MatrixHelper::init_tridiagonal_matrix<10>(diag);
   std::cout << matrix << std::endl;
 }
 

@@ -6,7 +6,7 @@
 TEST(SolverTest, TestSolver) {
   // build problem  Ax = b
   std::array<double, 3> elements = {10, 2, 3};
-  auto                  A        = gds::core::MatrixHelper::init_tridiagonal_matrix(20, elements);
+  auto                  A        = gds::core::MatrixHelper::init_tridiagonal_matrix<20>(elements);
 
   // matrix b
   Eigen::VectorXd b(20);

@@ -28,7 +28,19 @@ class MatrixHelper {
   /// @param n size of the matrix
   /// @param elements diagonal, subdiagonal, and superdiagonal elements of the matrix
   /// @return the initialized tridiagonal sparse matrix
-  static gds::core::ESM init_tridiagonal_matrix(int n, std::array<double, 3> elements);
+  template <size_t n>
+  static gds::core::ESM init_tridiagonal_matrix(std::array<double, 3> elements) {
+    // the tridiagonal matrix is a square matrix with n rows and n columns
+    std::vector<Eigen::Triplet<double>> entities;
+    for (int i = 0; i < n; i++) {
+      entities.push_back(Eigen::Triplet<double>(i, i, elements[1]));
+      if (i < n - 1) entities.push_back(Eigen::Triplet<double>(i, i + 1, elements[2]));
+      if (i > 0) entities.push_back(Eigen::Triplet<double>(i, i - 1, elements[0]));
+    }
+    gds::core::ESM tridiagonal_matrix(n, n);
+    tridiagonal_matrix.setFromTriplets(entities.begin(), entities.end());
+    return tridiagonal_matrix;
+  }
 
   /// @brief initializes a fivediagonal matrix with the given elements of a row
   /// @tparam n size of the matrix, assumed to be a perfect square
