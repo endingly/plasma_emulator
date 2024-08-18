@@ -20,7 +20,8 @@ struct Equation {
   std::vector<Partical> reactants;
   std::vector<Partical> products;
 
-  Equation() = default;
+  Equation()  = default;
+  ~Equation() = default;
   Equation(const std::string &equation_str);
 
  private:
@@ -64,10 +65,13 @@ struct formatter<std::vector<gds::chempars::Partical>> : formatter<std::string> 
   inline auto format(const std::vector<gds::chempars::Partical> &type,
                      format_context                             &ctx) const -> format_context::iterator {
     std::string str = "";
-    for (int i = 0; i < type.size() - 1; i++) {
-      str += type[i].name + " + ";
-    }
-    str += type[type.size() - 1].name;
+    if (type.size() > 0) {
+      for (int i = 0; i < type.size() - 1; i++) {
+        str += type[i].name + " + ";
+      }
+      if (type.size() > 1) str += type[type.size() - 1].name;
+    } else
+      str = "none";
     return formatter<std::string>::format(str, ctx);
   }
 };
