@@ -32,12 +32,9 @@
         {
             "name": "MSVC_x64_debug",
             "description": "Visual Studio Community 2022 Release - amd64",
-            "generator": "Ninja",
-            "architecture": {
-                "value": "x64",
-                "strategy": "external"
-            },
             "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "architecture": "x64",
+            "toolset": "host=x64",
             "cacheVariables": {
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
                 "CMAKE_C_COMPILER": "cl.exe",

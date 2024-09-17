@@ -10,6 +10,7 @@
     "gtest",
     "fmt",
     "units",
-    "eigen3"
+    "eigen3",
+    "nvidia-cutlass"
   ]
 }
