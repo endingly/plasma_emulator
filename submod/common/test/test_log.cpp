@@ -7,6 +7,7 @@ TEST(Log, print) {
   Logger::info("Hello, World!");
   Logger::info("Hello, World!");
   Logger::info("Hello, World!");
+  Logger::debug("Debug message");
 }
 
 TEST(Log, print2file) {
@@ -14,4 +15,5 @@ TEST(Log, print2file) {
   Logger::info("Hello, World!");
   Logger::info("Hello, World!");
   Logger::info("Hello, World!");
+  Logger::debug("Debug message");
 }

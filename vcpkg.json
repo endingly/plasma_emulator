@@ -11,6 +11,9 @@
     "fmt",
     "units",
     "eigen3",
-    "nvidia-cutlass"
+    {
+      "name": "nvidia-cutlass",
+      "platform": "native"
+    }
   ]
 }

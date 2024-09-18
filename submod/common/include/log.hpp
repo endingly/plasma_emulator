@@ -3,7 +3,7 @@
 
 namespace gds::common {
 
-enum class LogLevel { INFO, WARNING, ERROR };
+enum class LogLevel { INFO, WARNING, ERROR, DEBUG };
 
 class Logger {
  public:
@@ -17,6 +17,7 @@ class Logger {
   static void info(const std::string& log);
   static void warning(const std::string& log);
   static void error(const std::string& log);
+  static void debug(const std::string& log);
 };
 
 }  // namespace gds::common

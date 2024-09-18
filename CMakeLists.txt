@@ -11,6 +11,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 option(BUILD_TESTS "Build tests" ON)
 option(INTEL_MKL_BACKEND "Use Intel MKL backend" OFF)
+option(CUDA_BACKEND "Enable CUDA backend" OFF)
+option(PLASMA_DEBUG "Enable plasma debug messages, NOT FOR PRODUCTION USE" ON)
 
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
