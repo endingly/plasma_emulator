@@ -57,7 +57,7 @@ void gds::common::Logger::warning(const std::string& log) { writeLog(LogLevel::W
 void gds::common::Logger::error(const std::string& log) { writeLog(LogLevel::ERROR, log); }
 
 void gds::common::Logger::debug(const std::string& log) {
-  if constexpr (PLASMA_DEBUG) {
-    writeLog(LogLevel::DEBUG, log);
-  }
+#ifdef PLASMA_DEBUG
+  writeLog(LogLevel::DEBUG, log);
+#endif
 }

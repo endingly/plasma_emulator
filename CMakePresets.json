@@ -58,6 +58,15 @@
                 "CMAKE_EXPORT_COMPILE_COMMANDS": true
             },
             "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        },
+        {
+            "name": "mingw_x64_windows_release",
+            "displayName": "GCC 14.1.0 x86_64-w64-mingw32 (ucrt64) release mode",
+            "generator": "Ninja",
+            "inherits": "mingw_x64_windows_debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
         }
     ]
 }
