@@ -16,23 +16,20 @@ std::string to_string(LogLevel log_level) {
       return "WARNING";
     case LogLevel::ERROR:
       return "ERROR";
+    case LogLevel::DEBUG:
+      return "DEBUG";
     default:
       return "UNKNOWN";
   }
 }
 
-std::string get_date(const tm& t) {
-  return format("{:04d}-{:02d}-{:02d}", t.tm_year + 1900, t.tm_mon + 1,
-                t.tm_mday);
-}
+std::string get_date(const tm& t) { return format("{:04d}-{:02d}-{:02d}", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday); }
 
-std::string get_time(const tm& t) {
-  return format("{:02d}:{:02d}:{:02d}", t.tm_hour, t.tm_min, t.tm_sec);
-}
+std::string get_time(const tm& t) { return format("{:02d}:{:02d}:{:02d}", t.tm_hour, t.tm_min, t.tm_sec); }
 
 std::string get_date_time(const tm& t) {
-  return format("{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}", t.tm_year + 1900,
-                t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
+  return format("{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour,
+                t.tm_min, t.tm_sec);
 }
 
 void gds::common::Logger::writeLog(LogLevel log_level, const std::string& log) {
@@ -40,8 +37,7 @@ void gds::common::Logger::writeLog(LogLevel log_level, const std::string& log) {
   auto  ct      = std::chrono::system_clock::to_time_t(t);
   auto* time_tm = localtime(&ct);
 
-  auto s = fmt::format("[{}][{}] {}\n", to_string(log_level),
-                       get_date_time(*time_tm), log);
+  auto s = fmt::format("[{:^7}][{}] {}\n", to_string(log_level), get_date_time(*time_tm), log);
   std::cout << s;
   if (is_log_to_file_) {
     if (!std::filesystem::exists(log_file_path_)) {
@@ -54,14 +50,14 @@ void gds::common::Logger::writeLog(LogLevel log_level, const std::string& log) {
   }
 }
 
-void gds::common::Logger::info(const std::string& log) {
-  writeLog(LogLevel::INFO, log);
-}
+void gds::common::Logger::info(const std::string& log) { writeLog(LogLevel::INFO, log); }
 
-void gds::common::Logger::warning(const std::string& log) {
-  writeLog(LogLevel::WARNING, log);
-}
+void gds::common::Logger::warning(const std::string& log) { writeLog(LogLevel::WARNING, log); }
 
-void gds::common::Logger::error(const std::string& log) {
-  writeLog(LogLevel::ERROR, log);
+void gds::common::Logger::error(const std::string& log) { writeLog(LogLevel::ERROR, log); }
+
+void gds::common::Logger::debug(const std::string& log) {
+#ifdef PLASMA_DEBUG
+  writeLog(LogLevel::DEBUG, log);
+#endif
 }
