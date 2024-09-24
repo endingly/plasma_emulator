@@ -18,8 +18,8 @@ TEST(UtilsTest, Remove_space) {
 }
 
 TEST(UtilsTest, Split_string) {
-  std::string str    = "hello world";
-  auto        result = gds::common::split(str, " ");
-  EXPECT_EQ(result.value()[0], "hello");
-  EXPECT_EQ(result.value()[1], "world");
+  std::string str    = "e + Ar^+ -> Ar^*";
+  auto        result = gds::common::split(str, "->");
+  EXPECT_EQ(result.value()[0], "e+Ar^+");
+  EXPECT_EQ(result.value()[1], "Ar^*");
 }

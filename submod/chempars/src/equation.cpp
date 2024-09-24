@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "utils.hpp"
+
 int gds::chempars::Equation::id_counter = 0;
 
 gds::chempars::Equation::Equation(const std::string& str) {
@@ -12,12 +14,12 @@ gds::chempars::Equation::Equation(const std::string& str) {
   auto equation_str = str.substr(0, comma_index0);
   auto type_str     = str.substr(comma_index0 + 1, str.size() - comma_index0 - 1);
 
-  auto index = equation_str.find("->");
-  if (index == std::string::npos) {
+  auto result = gds::common::split(equation_str, "->");
+  if (result.has_value() == false) {
     throw std::invalid_argument("Invalid equation: " + equation_str);
   }
-  auto reactants_str = equation_str.substr(0, index);
-  auto products_str  = equation_str.substr(index + 2, equation_str.size() - index - 2);
+  auto reactants_str = result.value()[0];
+  auto products_str  = result.value()[1];
 
   auto reactants_vec = parse_equation_str(reactants_str);
   auto products_vec  = parse_equation_str(products_str);
