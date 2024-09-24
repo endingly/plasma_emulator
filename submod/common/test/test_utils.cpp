@@ -17,7 +17,7 @@ TEST(UtilsTest, Remove_space) {
   EXPECT_EQ(result.value(), "helloworld");
 }
 
-TEST(UtilTest, Split_string) {
+TEST(UtilsTest, Split_string) {
   std::string str    = "hello world";
   auto        result = gds::common::split(str, " ");
   EXPECT_EQ(result.value()[0], "hello");
