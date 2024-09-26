@@ -59,13 +59,11 @@ struct formatter<std::vector<gds::chempars::Partical>> : formatter<std::string> 
   inline auto format(const std::vector<gds::chempars::Partical> &type,
                      format_context                             &ctx) const -> format_context::iterator {
     std::string str = "";
-    if (!type.empty() && type.size() > 0) {
-      for (int i = 0; i < type.size() - 1; i++) {
-        str += type[i].name + " + ";
-      }
-      if (type.size() > 1) str += type[type.size() - 1].name;
-    } else
-      str = "none";
+    for (auto &&item : type) {
+      str += item.name + " + ";
+    }
+    str.erase(str.end() - 3, str.end());
+
     return formatter<std::string>::format(str, ctx);
   }
 };

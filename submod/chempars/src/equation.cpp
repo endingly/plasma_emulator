@@ -42,25 +42,21 @@ gds::chempars::Equation::Equation(const std::string& str) {
 }
 
 std::vector<std::string> gds::chempars::Equation::parse_equation_str(const std::string& equation_str) {
-  auto result_vec = std::vector<std::string>();
-  int  index      = 0;
   // parse equation string
-  size_t target = equation_str.find("+", index);
-  while (target != std::string::npos) {
-    if (equation_str[target - 1] == '^') {
-      result_vec.push_back(equation_str.substr(index, target - index + 1));
-      index = target + 2;
-    } else {
-      result_vec.push_back(equation_str.substr(index, target - index - 1));
-      index = target + 1;
+  if (equation_str.find_last_of("+") == std::string::npos) {
+    return {equation_str};
+  }
+  auto result_vec = gds::common::split(equation_str, "+");
+  if (result_vec.has_value() == false) {
+    throw std::invalid_argument("Invalid equation: " + equation_str);
+  }
+  auto result = result_vec.value();
+  for (auto&& item : result) {
+    if (item.contains("^")) {
+      item.append("+");
     }
-    target = equation_str.find("+", index);
   }
-  if (index < equation_str.size()) {
-    result_vec.push_back(equation_str.substr(index, equation_str.size() - index));
-  }
-
-  return result_vec;
+  return result;
 }
 
 gds::chempars::EquationType gds::chempars::Equation::parse_equation_type(const std::string& type_str) {
