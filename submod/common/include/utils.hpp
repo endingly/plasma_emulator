@@ -28,6 +28,6 @@ std::optional<std::vector<std::string>> split(const std::string_view& str, const
 /// @brief 去除字符串中的空格
 /// @param str 需要去除空格的字符串
 /// @return 返回去除空格后的字符串
-std::optional<std::string_view> remove_space(std::string_view str);
+std::optional<std::string> remove_space(std::string_view str);
 
 }  // namespace gds::common

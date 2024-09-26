@@ -5,24 +5,18 @@
 
 namespace gds::chempars {
 
-enum class EquationType {
-  ionization,
-  elastic,
-  excite,
-  compound,
-  fadding_excitation,
-};
+enum class EquationType { ionization, elastic, excite, compound, fadding_excitation, unkown };
 
 struct Equation {
-  EquationType          type;
-  int                   eq_id;
-  double                reaction_velocity;
+  EquationType          type              = EquationType::unkown;
+  int                   eq_id             = -1;
+  double                reaction_velocity = -1;
   std::vector<Partical> reactants;
   std::vector<Partical> products;
 
   Equation()  = default;
   ~Equation() = default;
-  Equation(const std::string &equation_str);
+  explicit Equation(const std::string &equation_str);
 
  private:
   static int               id_counter;
@@ -65,13 +59,11 @@ struct formatter<std::vector<gds::chempars::Partical>> : formatter<std::string> 
   inline auto format(const std::vector<gds::chempars::Partical> &type,
                      format_context                             &ctx) const -> format_context::iterator {
     std::string str = "";
-    if (type.size() > 0) {
-      for (int i = 0; i < type.size() - 1; i++) {
-        str += type[i].name + " + ";
-      }
-      if (type.size() > 1) str += type[type.size() - 1].name;
-    } else
-      str = "none";
+    for (auto &&item : type) {
+      str += item.name + " + ";
+    }
+    str.erase(str.end() - 3, str.end());
+
     return formatter<std::string>::format(str, ctx);
   }
 };

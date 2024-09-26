@@ -9,12 +9,12 @@ enum class ParticleType { electron, atom, ion, excite };
 
 struct Partical {
   std::string  name;
-  ParticleType type;
-  uint8_t      charge;
+  ParticleType type   = ParticleType::atom;
+  uint8_t      charge = 0;
 
-  Partical(std::string name, ParticleType type, uint8_t charge) : name(name), type(type), charge(charge) {}
+  Partical(std::string name, ParticleType type, uint8_t charge) : name(std::move(name)), type(type), charge(charge) {}
 
-  Partical(std::string name);
+  explicit Partical(std::string name);
   Partical()  = default;
   ~Partical() = default;
 };

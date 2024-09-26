@@ -1,8 +1,10 @@
 #include "utils.hpp"
 
+#include <algorithm>
 #include <functional>
 #include <stdexcept>
-#include <algorithm>
+#include <string>
+
 #include "log.hpp"
 
 namespace gds::common {
@@ -63,22 +65,14 @@ std::optional<std::vector<std::string>> split(const std::string_view& str, const
   return result;
 }
 
-std::optional<std::string_view> remove_space(std::string_view str) {
+std::optional<std::string> remove_space(std::string_view str) {
   if (str.empty()) {
     return std::nullopt;
   }
-  std::string_view           result    = str;
-  std::string_view::iterator pos_begin = result.begin();
-  std::string_view::iterator pos_last  = result.end();
-  // 去除开头的空格
-  while (pos_begin != pos_last && std::isspace(*pos_begin)) {
-    ++pos_begin;
-  }
-  // 去除结尾的空格
-  while (pos_begin != pos_last && std::isspace(*(pos_last - 1))) {
-    --pos_last;
-  }
-  return result.substr(std::distance(result.begin(), pos_begin), std::distance(pos_begin, pos_last));
+
+  std::string result(str);
+  result.erase(std::remove(result.begin(), result.end(), ' '), result.end());
+  return result;
 }
 
 };  // namespace gds::common
