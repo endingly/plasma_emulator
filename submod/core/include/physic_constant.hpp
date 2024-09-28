@@ -6,9 +6,9 @@ namespace gds::physic_constant {
 
 // clang-format off
 #pragma region custom units
-/// @brief cm^3/s, electron collision frequency
+/// @brief 1/(cm^3 * s), electron collision frequency
     using cubic_centimeter_per_second_t =
-            units::unit_t<units::compound_unit<units::cubed<units::length::centimeter>,
+            units::unit_t<units::compound_unit<units::inverse<units::cubed<units::length::centimeter>>,
                                                units::inverse<units::time::second>>>;
 #pragma endregion
 // clang-format on
