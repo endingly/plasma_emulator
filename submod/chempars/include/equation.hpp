@@ -3,6 +3,7 @@
 
 #include "partical.hpp"
 #include "physic_constant.hpp"
+#include "units_extend.hpp"
 
 namespace gds::chempars {
 
@@ -79,16 +80,19 @@ struct formatter<std::vector<gds::chempars::Partical>> : formatter<std::string> 
   }
 };
 
+// clang-format off
 template <>
 struct formatter<gds::chempars::Equation> : formatter<std::string> {
   inline auto format(const gds::chempars::Equation &eq, format_context &ctx) const -> format_context::iterator {
-    auto str = fmt::format("equation(type={}, id={}, {} -> {}, reaction_velocity = {} cm^3/s)", 
+    auto str = fmt::format("equation(type={}, id={}, {} -> {}, reaction_velocity = {})", 
                            eq.type, 
                            eq.eq_id, 
                            eq.reactants,
                            eq.products,
-                           eq.reaction_velocity.value());
+                           units::extend::to_string(eq.reaction_velocity));
     return formatter<std::string>::format(str, ctx);
   }
 };
+// clang-format on
+
 }  // namespace fmt
