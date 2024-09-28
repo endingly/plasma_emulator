@@ -25,5 +25,5 @@ TEST(UtilsTest, Split_string) {
 
   auto result2 = gds::common::split(result.value()[0], "+");
   EXPECT_EQ(result2.value()[0], "e");
-  EXPECT_EQ(result2.value()[1], "Ar^+");
+  EXPECT_EQ(result2.value()[1], "Ar^");
 }
