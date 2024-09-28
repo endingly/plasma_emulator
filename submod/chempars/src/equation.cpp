@@ -8,15 +8,18 @@ int gds::chempars::Equation::id_counter = 0;
 
 gds::chempars::Equation::Equation(const std::string& str) {
   // parse the equation string
-  // like: e + Ar^+ -> Ar^*
+  // like: e + Ar^+ -> Ar^*, ionization, 1.0e6
   // split the string by ","
-  auto comma_index0 = str.find_first_of(",");
-  auto equation_str = str.substr(0, comma_index0);
-  auto type_str     = str.substr(comma_index0 + 1, str.size() - comma_index0 - 1);
-
-  auto result = gds::common::split(equation_str, "->");
+  auto split_result = gds::common::split(str, ",");
+  // check if the split result is valid
+  if (!split_result.has_value() && split_result.value().size() != 3) {
+    throw std::invalid_argument("Invalid equation: " + str);
+  }
+  std::vector<std::string> str_result = split_result.value();
+  // parse the reactants and products
+  auto result = gds::common::split(str_result[0], "->");
   if (result.has_value() == false) {
-    throw std::invalid_argument("Invalid equation: " + equation_str);
+    throw std::invalid_argument("Invalid equation: " + str_result[0]);
   }
   auto reactants_str = result.value()[0];
   auto products_str  = result.value()[1];
@@ -35,7 +38,10 @@ gds::chempars::Equation::Equation(const std::string& str) {
   }
 
   // parse the type string
-  this->type = parse_equation_type(type_str);
+  this->type = parse_equation_type(str_result[1]);
+
+  // parse the reaction velocity
+  this->reaction_velocity = parse_reaction_velocity(str_result[2]);
 
   // generate the equation id
   this->eq_id = id_counter++;
@@ -72,6 +78,17 @@ gds::chempars::EquationType gds::chempars::Equation::parse_equation_type(const s
     return EquationType::fadding_excitation;
   else {
     std::cerr << "Parsing error, invalid equation type: " << type_str << std::endl;
+    exit(1);
+  }
+}
+
+gds::chempars::ccps gds::chempars::Equation::parse_reaction_velocity(const std::string& velocity_str) {
+  try {
+    // parse the velocity
+    double velocity = std::stod(velocity_str);
+    return ccps(velocity);
+  } catch (const std::exception& e) {
+    std::cerr << "Parsing error, invalid reaction velocity: " << velocity_str << std::endl;
     exit(1);
   }
 }
