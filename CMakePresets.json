@@ -31,7 +31,7 @@
         },
         {
             "name": "MSVC_x64_debug",
-            "description": "Visual Studio Community 2022 Release - amd64",
+            "description": "use MSVC 2022 (x64) debug mode",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "architecture": "x64",
             "toolset": "host=x64",
@@ -43,6 +43,14 @@
                 "CMAKE_BUILD_TYPE": "Debug"
             },
             "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        },
+        {
+            "name": "MSVC_x64_release",
+            "description": "use MSVC 2022 (x64) release mode",
+            "inherits": "MSVC_x64_debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
         },
         {
             "name": "mingw_x64_windows_debug",
