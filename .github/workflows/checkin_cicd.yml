@@ -53,8 +53,6 @@ jobs:
     - name: config, build and test
       uses: lukka/run-cmake@v10.8
       with: 
-        configurePreset: ${{ matrix.cmake_preset_name }}
-        buildPreset: ${{ matrix.cmake_buildpreset_name }}
-        testPreset: ${{ matrix.cmake_testpreset_name }}
+        workflowPreset: ${{ matrix.cmake_workflow_preset_name }}
       env:
         VCPKG_ROOT: ${{ runner.workspace }}/vcpkg
