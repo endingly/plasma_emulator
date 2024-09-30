@@ -44,6 +44,9 @@ jobs:
     - name: checkout repository
       uses: actions/checkout@v4
 
+    - name: set up ninja
+      uses: ashutoshvarma/setup-ninja@v1.1
+
     - name: set up vcpkg
       uses: lukka/run-vcpkg@v11.2
       with:
