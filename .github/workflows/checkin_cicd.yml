@@ -54,6 +54,7 @@ jobs:
       uses: lukka/run-vcpkg@v11.2
       with:
         vcpkgDirectory: ${{ runner.workspace }}/vcpkg
+        vcpkgGitCommitId: 68d349964cb4e8da561fd849d9491e6ba11c5681
 
     - name: config, build and test
       uses: lukka/run-cmake@v10.8
