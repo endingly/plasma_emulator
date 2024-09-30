@@ -35,6 +35,7 @@
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "architecture": "x64",
             "toolset": "host=x64",
+            "generator": "Visual Studio 17 2022",
             "cacheVariables": {
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
                 "CMAKE_C_COMPILER": "cl.exe",
@@ -75,6 +76,32 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "msvc_x64_build_release",
+            "cleanFirst": true,
+            "configurePreset": "MSVC_x64_release",
+            "configuration": "Release"
+        },
+        {
+            "name": "linux_x64_build_release",
+            "cleanFirst": true,
+            "configurePreset": "linux_gcc_x64_release",
+            "configuration": "Release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "checkin_windows",
+            "configurePreset": "MSVC_x64_release",
+            "configuration": "Release"
+        },
+        {
+            "name": "checkin_linux",
+            "configurePreset": "linux_gcc_x64_release",
+            "configuration": "Release"
         }
     ]
 }
