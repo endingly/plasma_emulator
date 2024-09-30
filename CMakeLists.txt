@@ -16,6 +16,11 @@ option(CICD_ENABLE "Enable CICD" ON)
 
 if(CICD_ENABLE)
     enable_testing()
+    add_test(
+        NAME ctest_all 
+        COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/scripts/run_ctest.py
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    )
 else()
     message(STATUS "CICD_ENABLE is off, tests will not be run on CI/CD")
 endif()
