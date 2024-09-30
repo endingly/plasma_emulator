@@ -81,13 +81,11 @@
     "buildPresets": [
         {
             "name": "msvc_x64_build_release",
-            "cleanFirst": true,
             "configurePreset": "MSVC_x64_release",
             "configuration": "Release"
         },
         {
             "name": "linux_x64_build_release",
-            "cleanFirst": true,
             "configurePreset": "linux_gcc_x64_release",
             "configuration": "Release"
         }
@@ -102,6 +100,25 @@
             "name": "checkin_linux",
             "configurePreset": "linux_gcc_x64_release",
             "configuration": "Release"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "cicd_on_windows",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "MSVC_x64_release"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc_x64_build_release"
+                },
+                {
+                    "type": "test",
+                    "name": "checkin_windows"
+                }
+            ]
         }
     ]
 }
