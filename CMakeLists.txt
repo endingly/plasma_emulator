@@ -12,6 +12,18 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 option(BUILD_TESTS "Build tests" ON)
 option(INTEL_MKL_BACKEND "Use Intel MKL backend" OFF)
 option(CUDA_BACKEND "Enable CUDA backend" OFF)
+option(CICD_ENABLE "Enable CICD" ON)
+
+if(CICD_ENABLE)
+    enable_testing()
+    add_test(
+        NAME ctest_all 
+        COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/scripts/run_ctest.py
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+else()
+    message(STATUS "CICD_ENABLE is off, tests will not be run on CI/CD")
+endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     option(PLASMA_DEBUG "Enable plasma debug messages, NOT FOR PRODUCTION USE" ON)
