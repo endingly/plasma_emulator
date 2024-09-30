@@ -3,8 +3,6 @@
 name: checkin on github
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -29,15 +27,11 @@ jobs:
           - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
-            cmake_configpreset_name: MSVC_x64_release
-            cmake_buildpreset_name: msvc_x64_build_release
-            cmake_testpreset_name: checkin_windows
+            cmake_workflow_preset_name: cicd_on_windows
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
-            cmake_configpreset_name: linux_gcc_x64_release
-            cmake_buildpreset_name: linux_x64_build_release
-            cmake_testpreset_name: checkin_linux
+            cmake_workflow_preset_name: cicd_on_linux
         exclude:
           - os: windows-latest
             c_compiler: gcc

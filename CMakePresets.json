@@ -119,6 +119,23 @@
                     "name": "checkin_windows"
                 }
             ]
+        },
+        {
+            "name": "cicd_on_linux",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "linux_gcc_x64_release"
+                },
+                {
+                    "type": "build",
+                    "name": "linux_x64_build_release"
+                },
+                {
+                    "type": "test",
+                    "name": "checkin_linux"
+                }
+            ]
         }
     ]
 }
