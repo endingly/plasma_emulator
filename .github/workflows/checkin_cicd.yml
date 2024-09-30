@@ -52,6 +52,8 @@ jobs:
 
     - name: set up vcpkg
       uses: lukka/run-vcpkg@v11.2
+      with:
+        vcpkgDirectory: ${{ runner.workspace }}/vcpkg
 
     - name: config, build and test
       uses: lukka/run-cmake@v10.8
@@ -60,4 +62,4 @@ jobs:
         buildPreset: ${{ matrix.cmake_buildpreset_name }}
         testPreset: ${{ matrix.cmake_testpreset_name }}
       env:
-        VCPKG_ROOT: ${{ github.workspace }}/vcpkg
+        VCPKG_ROOT: ${{ runner.workspace }}/vcpkg
