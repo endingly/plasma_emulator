@@ -1,6 +1,6 @@
 #pragma once
 #include <units.h>
-
+#include <sstream>
 #include <concepts>
 
 namespace units::extend {
