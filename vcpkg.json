@@ -10,10 +10,6 @@
     "gtest",
     "fmt",
     "units",
-    "eigen3",
-    {
-      "name": "nvidia-cutlass",
-      "platform": "native"
-    }
+    "eigen3"
   ]
 }

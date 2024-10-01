@@ -3,7 +3,7 @@
     "configurePresets": [
         {
             "name": "linux_gcc_x64_debug",
-            "displayName": "GCC 13.2.0 x86_64-linux-gnu debug mode",
+            "displayName": "GCC x86_64-linux-gnu debug mode",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "generator": "Ninja",
             "cacheVariables": {
@@ -17,7 +17,7 @@
         },
         {
             "name": "linux_gcc_x64_release",
-            "displayName": "GCC 13.2.0 x86_64-linux-gnu release mode",
+            "displayName": "GCC x86_64-linux-gnu release mode",
             "binaryDir": "${sourceDir}/out/build/${presetName}",
             "generator": "Ninja",
             "cacheVariables": {
@@ -117,6 +117,23 @@
                 {
                     "type": "test",
                     "name": "checkin_windows"
+                }
+            ]
+        },
+        {
+            "name": "cicd_on_linux",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "linux_gcc_x64_release"
+                },
+                {
+                    "type": "build",
+                    "name": "linux_x64_build_release"
+                },
+                {
+                    "type": "test",
+                    "name": "checkin_linux"
                 }
             ]
         }

@@ -3,8 +3,6 @@
 name: checkin on github
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -22,33 +20,32 @@ jobs:
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-24.04, windows-latest]
         build_type: [Release]
         c_compiler: [gcc, cl]
         include:
           - os: windows-latest
             c_compiler: cl
             cpp_compiler: cl
-            cmake_configpreset_name: MSVC_x64_release
-            cmake_buildpreset_name: msvc_x64_build_release
-            cmake_testpreset_name: checkin_windows
-          - os: ubuntu-latest
+            cmake_workflow_preset_name: cicd_on_windows
+          - os: ubuntu-24.04
             c_compiler: gcc
             cpp_compiler: g++
-            cmake_configpreset_name: linux_gcc_x64_release
-            cmake_buildpreset_name: linux_x64_build_release
-            cmake_testpreset_name: checkin_linux
+            cmake_workflow_preset_name: cicd_on_linux
         exclude:
           - os: windows-latest
             c_compiler: gcc
           - os: windows-latest
             c_compiler: clang
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             c_compiler: cl
 
     steps:
     - name: checkout repository
       uses: actions/checkout@v4
+
+    - name: set up ninja
+      uses: ashutoshvarma/setup-ninja@v1.1
 
     - name: set up vcpkg
       uses: lukka/run-vcpkg@v11.2
@@ -59,8 +56,6 @@ jobs:
     - name: config, build and test
       uses: lukka/run-cmake@v10.8
       with: 
-        configurePreset: ${{ matrix.cmake_preset_name }}
-        buildPreset: ${{ matrix.cmake_buildpreset_name }}
-        testPreset: ${{ matrix.cmake_testpreset_name }}
+        workflowPreset: ${{ matrix.cmake_workflow_preset_name }}
       env:
         VCPKG_ROOT: ${{ runner.workspace }}/vcpkg
