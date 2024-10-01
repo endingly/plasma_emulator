@@ -20,7 +20,7 @@ jobs:
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-24.04, windows-latest]
         build_type: [Release]
         c_compiler: [gcc, cl]
         include:
@@ -46,9 +46,6 @@ jobs:
 
     - name: set up ninja
       uses: ashutoshvarma/setup-ninja@v1.1
-
-    - name: set up gcc latest
-      uses: egor-tensin/setup-gcc@v1.3
 
     - name: set up vcpkg
       uses: lukka/run-vcpkg@v11.2
