@@ -28,7 +28,7 @@ jobs:
             c_compiler: cl
             cpp_compiler: cl
             cmake_workflow_preset_name: cicd_on_windows
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             c_compiler: gcc
             cpp_compiler: g++
             cmake_workflow_preset_name: cicd_on_linux
@@ -37,7 +37,7 @@ jobs:
             c_compiler: gcc
           - os: windows-latest
             c_compiler: clang
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             c_compiler: cl
 
     steps:
