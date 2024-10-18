@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "partical.hpp"
+#include "chempars/partical.hpp"
 
 TEST(ParticalTest, format_out) {
   using namespace gds::chempars;

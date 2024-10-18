@@ -1,8 +1,8 @@
-#include "equation.hpp"
+#include "chempars/equation.hpp"
 
 #include <iostream>
 
-#include "utils.hpp"
+#include "common/utils.hpp"
 
 int gds::chempars::Equation::id_counter = 0;
 

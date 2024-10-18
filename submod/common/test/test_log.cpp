@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "log.hpp"
+#include "common/log.hpp"
 using namespace gds::common;
 
 TEST(Log, print) {

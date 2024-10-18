@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
 
-#include "partical.hpp"
-#include "physic_constant.hpp"
-#include "units_extend.hpp"
+#include "chempars/partical.hpp"
+#include "core/physic_constant.hpp"
+#include "core/units_extend.hpp"
 
 namespace gds::chempars {
 

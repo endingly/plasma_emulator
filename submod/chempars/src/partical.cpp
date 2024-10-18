@@ -1,4 +1,4 @@
-#include "partical.hpp"
+#include "chempars/partical.hpp"
 
 gds::chempars::Partical::Partical(std::string name) {
   this->name   = name;

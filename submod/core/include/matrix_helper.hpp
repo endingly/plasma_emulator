@@ -1,8 +1,8 @@
 #pragma once
 #include <fstream>
 
-#include "matrix.hpp"
-#include "type_limits.hpp"
+#include "core/matrix.hpp"
+#include "common/type_limits.hpp"
 
 namespace gds::core {
 class MatrixHelper {

@@ -1,11 +1,11 @@
-#include "utils.hpp"
+#include "common/utils.hpp"
 
 #include <algorithm>
 #include <functional>
 #include <stdexcept>
 #include <string>
 
-#include "log.hpp"
+#include "common/log.hpp"
 
 namespace gds::common {
 

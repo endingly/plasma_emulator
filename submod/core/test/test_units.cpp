@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "config.hpp"
-#include "physic_constant.hpp"
-#include "units_extend.hpp"
+#include "core/config.hpp"
+#include "core/physic_constant.hpp"
+#include "core/units_extend.hpp"
 
 TEST(UnitsTest, TestUnits) {
   std::cout << gds::physic_constant::T_e << std::endl;
