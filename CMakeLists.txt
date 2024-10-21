@@ -37,3 +37,4 @@ if(MSVC)
 endif()
 
 add_subdirectory(submod)
+add_subdirectory(app)
