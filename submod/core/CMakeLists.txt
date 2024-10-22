@@ -3,9 +3,10 @@ find_package(Eigen3 CONFIG REQUIRED)
 file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.c")
 add_library(core STATIC ${SOURCES})
 target_include_directories(
-    core PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>
-    $<INSTALL_INTERFACE:include>
+    core
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include
+    INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+    INTERFACE $<INSTALL_INTERFACE:include>
 )
 target_link_libraries(core PUBLIC units::units Eigen3::Eigen common)
 
@@ -22,4 +23,4 @@ if(BUILD_TESTS)
     add_subdirectory(test)
 endif()
 
-copy_header_files(${CMAKE_CURRENT_LIST_DIR}/include ${CMAKE_BINARY_DIR}/include/core)
+copy_header_files(${CMAKE_CURRENT_LIST_DIR}/include ${CMAKE_CURRENT_BINARY_DIR}/include/core)

@@ -6,7 +6,7 @@
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
 
-#include "core/config.hpp"
+#include "config.hpp"
 
 namespace gds::core {
 

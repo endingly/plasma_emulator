@@ -1,4 +1,4 @@
-#include "common/log.hpp"
+#include "log.hpp"
 
 #include <fmt/format.h>
 

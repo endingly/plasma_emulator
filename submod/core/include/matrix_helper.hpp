@@ -1,7 +1,7 @@
 #pragma once
 #include <fstream>
 
-#include "core/matrix.hpp"
+#include "matrix.hpp"
 #include "common/type_limits.hpp"
 
 namespace gds::core {

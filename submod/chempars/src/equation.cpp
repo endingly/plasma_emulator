@@ -1,4 +1,4 @@
-#include "chempars/equation.hpp"
+#include "equation.hpp"
 
 #include <iostream>
 
