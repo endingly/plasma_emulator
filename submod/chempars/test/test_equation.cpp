@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "equation.hpp"
+#include "chempars/equation.hpp"
 
 TEST(EquationTest, TestEquation) {
   using namespace gds::chempars;

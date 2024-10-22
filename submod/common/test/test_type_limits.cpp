@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "type_limits.hpp"
+#include "common/type_limits.hpp"
 
 template <size_t N>
   requires gds::common::SquareRootNumber<N>

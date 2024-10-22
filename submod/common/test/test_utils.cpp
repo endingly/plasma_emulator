@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "utils.hpp"
+#include "common/utils.hpp"
 
 TEST(UtilsTest, Find_singe) {
   std::string str     = "hello world";

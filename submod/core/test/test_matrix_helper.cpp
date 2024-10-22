@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "matrix_helper.hpp"
+#include "core/matrix_helper.hpp"
 
 TEST(MatrixHelperTest, Test_init_tridiagonal_matrix) {
   std::array<double, 3> diag   = {1, 2, 3};
