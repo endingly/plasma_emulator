@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "matrix_helper.hpp"
-#include "timer.hpp"
+#include "core/matrix_helper.hpp"
+#include "common/timer.hpp"
 
 TEST(SolverTest, TestSolver) {
   // build problem  Ax = b
