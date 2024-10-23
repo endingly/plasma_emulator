@@ -1,8 +1,8 @@
 #pragma once
 #include <fstream>
 
-#include "matrix.hpp"
 #include "common/type_limits.hpp"
+#include "matrix.hpp"
 
 namespace gds::core {
 class MatrixHelper {
@@ -12,8 +12,8 @@ class MatrixHelper {
   /// @param matrix specifies the matrix to be written to the CSV file
   /// @param file_name the name of the CSV file to be written to
   /// @return true if the matrix was successfully written to the CSV file, false otherwise
-  template <gds::core::EigenMatrix T>
-  bool write_matrix_to_CSV(const T& matrix, const std::string& file_name) {
+  template <gds::core::EigenMatrixLike T>
+  static bool write_matrix_to_CSV(const T& matrix, const std::string& file_name) {
     std::ofstream file;
     file.open(file_name, std::ios::out | std::ios::binary);
     if (!file.is_open()) {
@@ -23,6 +23,11 @@ class MatrixHelper {
     file.close();
     return true;
   }
+
+  /// @brief reads a matrix from a CSV file
+  /// @param file_name the name of the CSV file to be read from
+  /// @return the matrix read from the CSV file
+  static Matrix load_matrix_from_CSV(const std::string& file_name);
 
   /// @brief initializes a tridiagonal matrix with the given diagonal, subdiagonal, and superdiagonal elements
   /// @param n size of the matrix

@@ -1,10 +1,12 @@
 find_package(units CONFIG REQUIRED)
 find_package(Eigen3 CONFIG REQUIRED)
+find_path(RAPIDCSV_INCLUDE_DIRS "rapidcsv.h")
 file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.c")
 add_library(core STATIC ${SOURCES})
 target_include_directories(
     core
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PUBLIC ${RAPIDCSV_INCLUDE_DIRS}
     INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
     INTERFACE $<INSTALL_INTERFACE:include>
 )
