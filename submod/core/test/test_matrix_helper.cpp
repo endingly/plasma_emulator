@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
 
 #include <iostream>
+#include <string>
 
+#include "core/matrix.hpp"
 #include "core/matrix_helper.hpp"
 
 TEST(MatrixHelperTest, Test_init_tridiagonal_matrix) {
@@ -16,13 +18,11 @@ TEST(MatrixHelperTest, Test_init_fiveiagonal_matrix) {
   std::cout << matrix << std::endl;
 }
 
-TEST(MatrixHelperTest, Test_write_matrix_to_file) {
-  auto m = gds::core::Matrix::Random(5, 5);
-  auto r = gds::core::MatrixHelper::write_matrix_to_CSV(m, "test.csv");
+TEST(MatrixHelperTest, Test_write_load_matrix_to_file) {
+  gds::core::Matrix m = gds::core::Matrix::Random(10, 10);
+  auto              r = gds::core::MatrixHelper::write_matrix_to_CSV(m, "test.csv");
   EXPECT_TRUE(r);
-}
-
-TEST(MatrixHelperTest, Test_load_matrix_from_file) {
-  auto m = gds::core::MatrixHelper::load_matrix_from_CSV("test.csv");
-  std::cout << m << std::endl;
+  auto lr = gds::core::MatrixHelper::load_matrix_from_CSV("test.csv");
+  using gds::core::operator==;
+  EXPECT_TRUE(m == lr);
 }
