@@ -17,7 +17,6 @@ using ESM          = Eigen::SparseMatrix<double>;
 using stack_matrix = Eigen::Matrix<double, x_cells, y_cells, Eigen::ColMajor>;
 
 template <typename T>
-concept EigenMatrix = std::is_same_v<T, Matrix> || std::is_same_v<T, ESM> || std::is_same_v<T, stack_matrix> ||
-                      std::is_same_v<T, Eigen::VectorXd>;
+concept EigenMatrixLike = std::is_base_of_v<Eigen::DenseBase<T>, T>;
 
 };  // namespace gds::core
