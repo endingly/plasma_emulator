@@ -59,3 +59,4 @@ jobs:
         workflowPreset: ${{ matrix.cmake_workflow_preset_name }}
       env:
         VCPKG_ROOT: ${{ runner.workspace }}/vcpkg
+        CICD_ENABLE: ON
