@@ -9,12 +9,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-option(BUILD_TESTS "Build tests" ON)
+option(BUILD_TESTS "Build tests" OFF)
 option(INTEL_MKL_BACKEND "Use Intel MKL backend" OFF)
 option(CUDA_BACKEND "Enable CUDA backend" OFF)
-option(CICD_ENABLE "Enable CICD" ON)
+option(CICD_ENABLE "Enable CICD" OFF)
 
 if(CICD_ENABLE)
+    set(BUILD_TESTS ON)
     enable_testing()
     add_test(
         NAME ctest_all 

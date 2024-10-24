@@ -20,6 +20,7 @@ The project is aimed to develop a C++ emulator for plasma physics calculations. 
   - units (from vcpkg)
   - eigen3 (from vcpkg)
   - intel-mkl (from vcpkg, optional)
+  - rapidcsv (from vcpkg)
 - parallel
   - cutlass (from vcpkg, optional)
 
