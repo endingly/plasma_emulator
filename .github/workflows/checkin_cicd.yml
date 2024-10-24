@@ -57,6 +57,6 @@ jobs:
       uses: lukka/run-cmake@v10.8
       with: 
         workflowPreset: ${{ matrix.cmake_workflow_preset_name }}
-        configurePresetAdditionalArgs: "['-DCICD_ENABLE=ON']"
       env:
         VCPKG_ROOT: ${{ runner.workspace }}/vcpkg
+        CICD_ENABLE: ON
