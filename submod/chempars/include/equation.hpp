@@ -1,20 +1,19 @@
 #pragma once
 #include <vector>
 
-#include "partical.hpp"
-#include "core/physic_constant.hpp"
 #include "core/units_extend.hpp"
+#include "partical.hpp"
 
 namespace gds::chempars {
 
-using ccps = gds::physic_constant::cubic_centimeter_per_second_t;
+using ccps_t = units::reaction_rate::cubic_centimeter_per_second_t;
 
 enum class EquationType { ionization, elastic, excite, compound, fadding_excitation, unkown };
 
 struct Equation {
   EquationType          type              = EquationType::unkown;
   int                   eq_id             = -1;
-  ccps                  reaction_velocity = ccps(-1);
+  ccps_t                reaction_velocity = ccps_t(-1);
   std::vector<Partical> reactants;
   std::vector<Partical> products;
 
@@ -33,7 +32,7 @@ struct Equation {
 
   /// parse the reaction velocity from the equation string
   /// @param velocity_str the string of reaction velocity, not including the unit, and it's units are cm^3/s
-  ccps parse_reaction_velocity(const std::string &velocity_str);
+  ccps_t parse_reaction_velocity(const std::string &velocity_str);
 };
 
 }  // namespace gds::chempars
