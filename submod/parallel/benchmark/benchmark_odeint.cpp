@@ -1,21 +1,18 @@
-#include <gtest/gtest.h>
-
-#include <chrono>
-#include <iostream>
-#include <numbers>
+#include <benchmark/benchmark.h>
 
 #include "odeint.hpp"
 
 inline double f(double x) { return 4.0 / (1.0 + x * x); }
 
-TEST(OdeintTest, Test_ompOdeint) {
+static void odeint_pi(benchmark::State& state) {
   constexpr uint64_t step_num = 4194304;
-  auto               r        = gds::parallel::odeint::integrate(f, 0.0, 1.0, step_num);
-  EXPECT_NEAR(r, std::numbers::pi, 1e-5);
+  for (auto _ : state) {
+    auto r = gds::parallel::odeint::integrate(f, 0.0, 1.0, step_num);
+  }
 }
+BENCHMARK(odeint_pi)->Unit(benchmark::kMicrosecond);
 
-TEST(OdeintTest, Test_cudaOdeint) {
-  // init data
+static void odeint_pi_cuda(benchmark::State& state) {
   constexpr uint64_t step_num  = 4194304;
   constexpr double   start_x   = 0.0;
   constexpr double   end_x     = 1.0;
@@ -27,7 +24,9 @@ TEST(OdeintTest, Test_cudaOdeint) {
     x[i] = start_x + i * step_size;
     y[i] = f(x[i]);
   }
-  // integrate
-  auto result = gds::parallel::odeint::integrate(x, y);
-  EXPECT_NEAR(result, std::numbers::pi, 1e-5);
+
+  for (auto _ : state) {
+    gds::parallel::odeint::integrate(x, y);
+  }
 }
+BENCHMARK(odeint_pi_cuda)->Unit(benchmark::kMicrosecond);

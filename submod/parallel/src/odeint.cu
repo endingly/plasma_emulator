@@ -51,21 +51,21 @@ double integrate(std::vector<double>& x, std::vector<double>& y) {
   gds::parallel::odeint::internal::odeint_kernel<<<grid_size, block_size>>>(result_dev, x_dev, y_dev, n);
 
   // copy result back to host
-  double* result = new double[n];
-  cudaMemcpy(&result, result_dev, n * sizeof(double), cudaMemcpyDeviceToHost);
+  double* result = (double*)malloc(n * sizeof(double));
+  cudaMemcpy(result, result_dev, n * sizeof(double), cudaMemcpyDeviceToHost);
+
+  // epilogue
+  double integral = 0.0;
+  for (int i = 0; i < n - 1; i++) {
+    integral += result[i];
+  }
 
   // free device memory
   cudaFree(x_dev);
   cudaFree(y_dev);
   cudaFree(result_dev);
-
-  // epilogue
-  double integral = 0.0;
-  for (int i = 0; i < n; i++) {
-    integral += result[i];
-  }
-
   delete[] result;
+
   return integral;
 }
 

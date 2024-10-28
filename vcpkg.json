@@ -11,6 +11,7 @@
     "fmt",
     "units",
     "eigen3",
-    "rapidcsv"
+    "rapidcsv",
+    "benchmark"
   ]
 }
