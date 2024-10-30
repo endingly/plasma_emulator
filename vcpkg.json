@@ -12,6 +12,7 @@
     "units",
     "eigen3",
     "rapidcsv",
-    "benchmark"
+    "benchmark",
+    "gsl"
   ]
 }

@@ -14,20 +14,9 @@ TEST(OdeintTest, Test_ompOdeint) {
   EXPECT_NEAR(r, std::numbers::pi, 1e-5);
 }
 
+static double f_gsl(double x, void *params) { return 4.0 / (1.0 + x * x); }
 TEST(OdeintTest, Test_cudaOdeint) {
   // init data
-  constexpr uint64_t step_num  = 4194304;
-  constexpr double   start_x   = 0.0;
-  constexpr double   end_x     = 1.0;
-  constexpr double   step_size = (end_x - start_x) / step_num;
-
-  std::vector<double> x(step_num);
-  std::vector<double> y(step_num);
-  for (int i = 0; i < step_num; i++) {
-    x[i] = start_x + i * step_size;
-    y[i] = f(x[i]);
-  }
-  // integrate
-  auto result = gds::parallel::odeint::integrate(x, y);
-  EXPECT_NEAR(result, std::numbers::pi, 1e-5);
+  auto data = gds::parallel::odeint::integrate(f_gsl, 0.0, 1.0);
+  EXPECT_NEAR(data, std::numbers::pi, 1e-7);
 }
