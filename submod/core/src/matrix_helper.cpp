@@ -10,12 +10,13 @@
 
 namespace gds::core {
 
-Matrix MatrixHelper::load_matrix_from_CSV(const std::string &file_name) {
-  rapidcsv::Document doc(file_name, rapidcsv::LabelParams(-1, -1), rapidcsv::SeparatorParams(' ', 0));
-  auto               rows = doc.GetRowCount();
-  auto               row0 = doc.GetRow<std::string>(0);
+Matrix MatrixHelper::load_matrix_from_CSV(const std::string& file_name) {
+  rapidcsv::Document doc(file_name, rapidcsv::LabelParams(-1, -1),
+                         rapidcsv::SeparatorParams(' ', 0));
+  auto rows = doc.GetRowCount();
+  auto row0 = doc.GetRow<std::string>(0);
   row0.erase(std::remove(row0.begin(), row0.end(), ""), row0.end());
-  auto   cols = row0.size();
+  auto cols = row0.size();
   Matrix matrix(rows, cols);
   for (uint32_t i = 0; i < rows; i++) {
     auto tr = doc.GetRow<std::string>(i);

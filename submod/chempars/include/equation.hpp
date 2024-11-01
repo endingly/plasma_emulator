@@ -8,7 +8,14 @@ namespace gds::chempars {
 
 using ccps_t = units::reaction_rate::cubic_centimeter_per_second_t;
 
-enum class EquationType { ionization, elastic, excite, compound, fadding_excitation, unkown };
+enum class EquationType {
+  ionization,
+  elastic,
+  excite,
+  compound,
+  fadding_excitation,
+  unkown
+};
 
 struct Equation {
   EquationType          type              = EquationType::unkown;
@@ -23,12 +30,12 @@ struct Equation {
   /// @brief Given a equation string, parse it and construct an Equation object
   /// @param equation_str the equation string, e.g. "A -> B + C, ionization, 1.0e+12", the units of reaction velocity is
   /// `cm^3/s`
-  explicit Equation(const std::string &equation_str);
+  explicit Equation(const std::string& equation_str);
 
  private:
-  static int               id_counter;
-  std::vector<std::string> parse_equation_str(const std::string &equation_str);
-  EquationType             parse_equation_type(const std::string &type_str);
+  static int id_counter;
+  std::vector<std::string> parse_equation_str(const std::string& equation_str);
+  EquationType parse_equation_type(const std::string& type_str);
 
   /// parse the reaction velocity from the equation string
   /// @param velocity_str the string of reaction velocity, not including the unit, and it's units are cm^3/s
@@ -40,7 +47,8 @@ struct Equation {
 namespace fmt {
 template <>
 struct formatter<gds::chempars::EquationType> : formatter<std::string> {
-  inline auto format(const gds::chempars::EquationType &type, format_context &ctx) const -> format_context::iterator {
+  inline auto format(const gds::chempars::EquationType& type,
+                     format_context& ctx) const -> format_context::iterator {
     std::string type_str;
     switch (type) {
       case gds::chempars::EquationType::ionization:
@@ -66,11 +74,12 @@ struct formatter<gds::chempars::EquationType> : formatter<std::string> {
 };
 
 template <>
-struct formatter<std::vector<gds::chempars::Partical>> : formatter<std::string> {
-  inline auto format(const std::vector<gds::chempars::Partical> &type,
-                     format_context                             &ctx) const -> format_context::iterator {
+struct formatter<std::vector<gds::chempars::Partical>>
+    : formatter<std::string> {
+  inline auto format(const std::vector<gds::chempars::Partical>& type,
+                     format_context& ctx) const -> format_context::iterator {
     std::string str = "";
-    for (auto &&item : type) {
+    for (auto&& item : type) {
       str += item.name + " + ";
     }
     str.erase(str.end() - 3, str.end());
@@ -92,6 +101,7 @@ struct formatter<gds::chempars::Equation> : formatter<std::string> {
     return formatter<std::string>::format(str, ctx);
   }
 };
+
 // clang-format on
 
 }  // namespace fmt

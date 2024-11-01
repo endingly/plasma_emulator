@@ -10,7 +10,9 @@
 namespace gds::common {
 
 int find_sign(std::string_view str, std::string_view substr) {
-  auto pos = std::search(str.begin(), str.end(), std::boyer_moore_searcher(substr.begin(), substr.end()));
+  auto pos =
+      std::search(str.begin(), str.end(),
+                  std::boyer_moore_searcher(substr.begin(), substr.end()));
   if (pos == str.end()) {
     const std::string msg = "Error: cannot find `->` in the string";
     Logger::error(msg);
@@ -19,8 +21,10 @@ int find_sign(std::string_view str, std::string_view substr) {
   return std::distance(str.begin(), pos);
 }
 
-int find_sign(const std::string::iterator& begin, const std::string::iterator& end, const std::string& substr) {
-  auto pos = std::search(begin, end, std::boyer_moore_searcher(substr.begin(), substr.end()));
+int find_sign(const std::string::iterator& begin,
+              const std::string::iterator& end, const std::string& substr) {
+  auto pos = std::search(
+      begin, end, std::boyer_moore_searcher(substr.begin(), substr.end()));
   if (pos == end) {
     std::string msg = "Error: cannot find `->` in the string";
     Logger::error(msg);
@@ -29,13 +33,14 @@ int find_sign(const std::string::iterator& begin, const std::string::iterator& e
   return std::distance(begin, pos);
 }
 
-std::optional<std::vector<std::string>> split(const std::string_view& str, const std::string_view& delim) {
+std::optional<std::vector<std::string>> split(const std::string_view& str,
+                                              const std::string_view& delim) {
   if (str.empty()) {
     return std::nullopt;
   }
   std::vector<std::string> result;
-  std::string::size_type   pos_begin = 0;
-  std::string::size_type   pos       = str.find(delim);
+  std::string::size_type pos_begin = 0;
+  std::string::size_type pos       = str.find(delim);
   // 循环拆分字符串
   while (pos != std::string::npos) {
     if (pos != pos_begin) {

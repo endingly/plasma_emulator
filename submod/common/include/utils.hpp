@@ -17,13 +17,15 @@ int find_sign(std::string_view str, std::string_view substr);
 /// @param end 指向结束位置的迭代器
 /// @param substr 指定要搜索的子串
 /// @return
-int find_sign(const std::string::iterator& begin, const std::string::iterator& end, const std::string& substr);
+int find_sign(const std::string::iterator& begin,
+              const std::string::iterator& end, const std::string& substr);
 
 /// @brief 拆分字符串，内部存在拷贝开销
 /// @param str 需要拆分的字符串
 /// @param delim 指定拆分依据
 /// @return 返回拆分结果的视图
-std::optional<std::vector<std::string>> split(const std::string_view& str, const std::string_view& delim);
+std::optional<std::vector<std::string>> split(const std::string_view& str,
+                                              const std::string_view& delim);
 
 /// @brief 去除字符串中的空格
 /// @param str 需要去除空格的字符串

@@ -8,11 +8,12 @@ namespace gds::chempars {
 enum class ParticleType { electron, atom, ion, excite };
 
 struct Partical {
-  std::string  name;
-  ParticleType type   = ParticleType::atom;
-  uint8_t      charge = 0;
+  std::string name;
+  ParticleType type = ParticleType::atom;
+  uint8_t charge    = 0;
 
-  Partical(std::string name, ParticleType type, uint8_t charge) : name(std::move(name)), type(type), charge(charge) {}
+  Partical(std::string name, ParticleType type, uint8_t charge)
+      : name(std::move(name)), type(type), charge(charge) {}
 
   explicit Partical(std::string name);
   Partical()  = default;
@@ -25,7 +26,8 @@ namespace fmt {
 
 template <>
 struct formatter<gds::chempars::ParticleType> : formatter<std::string> {
-  inline auto format(const gds::chempars::ParticleType &type, format_context &ctx) const -> format_context::iterator {
+  inline auto format(const gds::chempars::ParticleType& type,
+                     format_context& ctx) const -> format_context::iterator {
     std::string type_str;
     switch (type) {
       case gds::chempars::ParticleType::electron:
@@ -49,8 +51,10 @@ struct formatter<gds::chempars::ParticleType> : formatter<std::string> {
 
 template <>
 struct formatter<gds::chempars::Partical> : formatter<std::string> {
-  auto format(const gds::chempars::Partical &part, format_context &ctx) const -> format_context::iterator {
-    auto str = fmt::format("name: {}, type: {}, charge: {}", part.name, part.type, part.charge);
+  auto format(const gds::chempars::Partical& part,
+              format_context& ctx) const -> format_context::iterator {
+    auto str = fmt::format("name: {}, type: {}, charge: {}", part.name,
+                           part.type, part.charge);
     return formatter<std::string>::format(str, ctx);
   }
 };

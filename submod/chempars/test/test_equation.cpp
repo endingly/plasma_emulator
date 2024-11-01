@@ -35,6 +35,6 @@ TEST(EquationTest, TestEquation) {
 TEST(EquationTest, TestParse) {
   using namespace gds::chempars;
   std::string str = "e + Ar^+ -> Ar^*, excite, 3e-10";
-  Equation    e(str);
+  Equation e(str);
   fmt::print("{}\n", e);
 }

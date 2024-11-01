@@ -1,12 +1,12 @@
 #include <gtest/gtest.h>
 
-#include "core/matrix_helper.hpp"
 #include "common/timer.hpp"
+#include "core/matrix_helper.hpp"
 
 TEST(SolverTest, TestSolver) {
   // build problem  Ax = b
   std::array<double, 3> elements = {10, 2, 3};
-  auto                  A        = gds::core::MatrixHelper::init_tridiagonal_matrix<20>(elements);
+  auto A = gds::core::MatrixHelper::init_tridiagonal_matrix<20>(elements);
 
   // matrix b
   Eigen::VectorXd b(20);
@@ -25,7 +25,8 @@ TEST(SolverTest, TestSolver_fivediagonal) {
   // build problem  Ax = b
   // A
   std::array<double, 5> elements = {10, 2, 3, 4, 5};
-  auto                  A        = gds::core::MatrixHelper::init_fivediagonal_matrices<80 * 80>(elements);
+  auto A =
+      gds::core::MatrixHelper::init_fivediagonal_matrices<80 * 80>(elements);
 
   // matrix b
   Eigen::VectorXd b = Eigen::VectorXd::Ones(80 * 80);
@@ -45,11 +46,13 @@ TEST(SolverTest, TestSolver_fivediagonal) {
 
 #ifdef INTEL_MKL_BACKEND
 #include <Eigen/PardisoSupport>
+
 TEST(SolverTest, TestSolver_fivediagonal_with_mkl) {
   // build problem  Ax = b
   // A
   std::array<double, 5> elements = {10, 2, 3, 4, 5};
-  auto                  A        = gds::core::MatrixHelper::init_fivediagonal_matrices<80 * 80>(elements);
+  auto A =
+      gds::core::MatrixHelper::init_fivediagonal_matrices<80 * 80>(elements);
 
   // matrix b
   Eigen::VectorXd b = Eigen::VectorXd::Ones(80 * 80);

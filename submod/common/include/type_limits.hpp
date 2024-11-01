@@ -4,7 +4,8 @@ namespace gds::common {
 
 class TypeLimitHelper {
  private:
-  static constexpr bool isPerfectSquareHelper(unsigned int num, unsigned int lo, unsigned int hi) {
+  static constexpr bool isPerfectSquareHelper(unsigned int num, unsigned int lo,
+                                              unsigned int hi) {
     {
       if (lo > hi) {
         return false;
