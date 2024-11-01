@@ -47,7 +47,8 @@ gds::chempars::Equation::Equation(const std::string& str) {
   this->eq_id = id_counter++;
 }
 
-std::vector<std::string> gds::chempars::Equation::parse_equation_str(const std::string& equation_str) {
+std::vector<std::string> gds::chempars::Equation::parse_equation_str(
+    const std::string& equation_str) {
   // parse equation string
   if (equation_str.find_last_of("+") == std::string::npos) {
     return {equation_str};
@@ -65,7 +66,8 @@ std::vector<std::string> gds::chempars::Equation::parse_equation_str(const std::
   return result;
 }
 
-gds::chempars::EquationType gds::chempars::Equation::parse_equation_type(const std::string& type_str) {
+gds::chempars::EquationType gds::chempars::Equation::parse_equation_type(
+    const std::string& type_str) {
   if (type_str.find("ionization") != std::string::npos)
     return EquationType::ionization;
   else if (type_str.find("elastic") != std::string::npos)
@@ -77,18 +79,21 @@ gds::chempars::EquationType gds::chempars::Equation::parse_equation_type(const s
   else if (type_str.find("fadding_excitation") != std::string::npos)
     return EquationType::fadding_excitation;
   else {
-    std::cerr << "Parsing error, invalid equation type: " << type_str << std::endl;
+    std::cerr << "Parsing error, invalid equation type: " << type_str
+              << std::endl;
     exit(1);
   }
 }
 
-gds::chempars::ccps gds::chempars::Equation::parse_reaction_velocity(const std::string& velocity_str) {
+gds::chempars::ccps gds::chempars::Equation::parse_reaction_velocity(
+    const std::string& velocity_str) {
   try {
     // parse the velocity
     double velocity = std::stod(velocity_str);
     return ccps(velocity);
   } catch (const std::exception& e) {
-    std::cerr << "Parsing error, invalid reaction velocity: " << velocity_str << std::endl;
+    std::cerr << "Parsing error, invalid reaction velocity: " << velocity_str
+              << std::endl;
     exit(1);
   }
 }

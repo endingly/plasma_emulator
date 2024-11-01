@@ -6,7 +6,8 @@
 
 TEST(UnitsTest, TestUnits) {
   std::cout << gds::physic_constant::T_e << std::endl;
-  std::cout << gds::physic_constant::cubic_centimeter_per_second_t(1.0) << std::endl;
+  std::cout << gds::physic_constant::cubic_centimeter_per_second_t(1.0)
+            << std::endl;
 }
 
 TEST(UnitsTest, TestConfig) {
@@ -18,6 +19,6 @@ TEST(UnitsTest, TestConfig) {
 
 TEST(UnitsTest, Test_Extend_To_string) {
   gds::physic_constant::cubic_centimeter_per_second_t ccs(1.0);
-  auto                                                s = units::extend::to_string(ccs);
+  auto s = units::extend::to_string(ccs);
   EXPECT_EQ(s, "1e+06 m^-3 s^-1");
 }

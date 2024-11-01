@@ -5,7 +5,10 @@
 #include <iostream>
 #include <numbers>
 
-static double f_gsl(double x, void *params) { return 4.0 / (1.0 + x * x); }
+static double f_gsl(double x, void* params) {
+  return 4.0 / (1.0 + x * x);
+}
+
 TEST(OdeintTest, Test_cudaOdeint) {
   // init data
   auto data = gds::math::odeint::integrate(f_gsl, 0.0, 1.0);

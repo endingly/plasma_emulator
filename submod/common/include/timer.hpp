@@ -6,13 +6,13 @@ class Timer {
  private:
   std::chrono::steady_clock::time_point start_time;
   std::chrono::steady_clock::time_point end_time;
-  std::chrono::microseconds             duration;
+  std::chrono::microseconds duration;
 
  public:
   Timer();
-  void                      start();
-  void                      stop();
+  void start();
+  void stop();
   std::chrono::microseconds get_duration();
-  void                      pause();
+  void pause();
 };
 };  // namespace gds::common
