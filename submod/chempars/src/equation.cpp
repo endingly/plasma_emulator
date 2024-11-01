@@ -85,12 +85,11 @@ gds::chempars::EquationType gds::chempars::Equation::parse_equation_type(
   }
 }
 
-gds::chempars::ccps gds::chempars::Equation::parse_reaction_velocity(
-    const std::string& velocity_str) {
+gds::chempars::ccps_t gds::chempars::Equation::parse_reaction_velocity(const std::string& velocity_str) {
   try {
     // parse the velocity
     double velocity = std::stod(velocity_str);
-    return ccps(velocity);
+    return ccps_t(velocity);
   } catch (const std::exception& e) {
     std::cerr << "Parsing error, invalid reaction velocity: " << velocity_str
               << std::endl;

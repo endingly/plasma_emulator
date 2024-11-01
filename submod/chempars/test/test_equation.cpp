@@ -7,7 +7,7 @@ TEST(EquationTest, TestEquation) {
   using vec_part = std::vector<Partical>;
   Equation e;
   e.eq_id             = 1;
-  e.reaction_velocity = ccps(3e-10);
+  e.reaction_velocity = ccps_t(3e-10);
   e.type              = EquationType::ionization;
 
   Partical p1, p2, p3;
